@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+// #include "SinglyLinkedList/linked_list.h"
 #include "SinglyLinkedListWithTailPointer/linked_list.h"
 
 void printInt(void *intp) {
@@ -43,7 +44,13 @@ void main() {
     removeAt(&int_list, 3);
     printList(int_list, printInt); // [ 4 2 4 2 ]
 
-    printf("%d\n", (int)length(int_list)); // 4
+    printf("Get: ");
+    printInt((getHead(int_list)->data)); // 4
+    printInt((getTail(int_list)->data)); // 2
+    printInt((get(int_list, 2)->data)); // 4
+    printf("\n");
+
+    printf("Length %d\n", (int)length(int_list)); // 4
 
     ListElement *elemp = find(int_list, &y, numCmp);
     printf("%d\n", *(int *)elemp->data); // 2

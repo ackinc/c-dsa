@@ -88,6 +88,25 @@ bool removeTail(LinkedList *l) {
     removeAt(l, length(*l) - 1);
 }
 
+ListElement *get(LinkedList l, size_t pos) {
+    if (empty(l)) return NULL;
+
+    ListElement *cur = l.head;
+    while (pos > 0 && cur) {
+        cur = cur->next;
+        pos--;
+    }
+    return cur;
+}
+
+ListElement *getHead(LinkedList l) {
+    return l.head;
+}
+
+ListElement *getTail(LinkedList l) {
+    return get(l, length(l) - 1);
+}
+
 ListElement *find(LinkedList l, void *data, bool (*cmpFn) (void *, void *)) {
     ListElement *cur = l.head;
     while (cur) {

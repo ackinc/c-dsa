@@ -14,21 +14,25 @@ typedef struct LinkedList {
     size_t elem_size;
 } LinkedList;
 
-LinkedList createLinkedList(size_t elem_size);
-size_t length(LinkedList l);
-bool empty(LinkedList l);
+LinkedList createLinkedList(size_t elem_size); // O(1)
+size_t length(LinkedList l); // O(n)
+bool empty(LinkedList l); // O(1)
 
-bool insertAt(LinkedList *l, size_t pos, void *data);
-bool removeAt(LinkedList *l, size_t pos);
+bool insertAt(LinkedList *l, size_t pos, void *data); // O(n)
+bool insertHead(LinkedList *l, void *data); // O(1)
+bool insertTail(LinkedList *l, void *data); // O(n)
 
-bool insertHead(LinkedList *l, void *data);
-bool insertTail(LinkedList *l, void *data);
-bool removeHead(LinkedList *l);
-bool removeTail(LinkedList *l);
+bool removeAt(LinkedList *l, size_t pos); // O(n)
+bool removeHead(LinkedList *l); // O(1)
+bool removeTail(LinkedList *l); // O(n)
 
-ListElement *find(LinkedList l, void *data, bool (*cmpFn) (void *, void *));
-long int findIndex(LinkedList l, void *data, bool (*cmpFn) (void *, void *));
+ListElement *get(LinkedList l, size_t pos); // O(n)
+ListElement *getHead(LinkedList l); // O(1)
+ListElement *getTail(LinkedList l); // O(n)
 
-void printList (LinkedList l, void (*printElem) (void *));
+ListElement *find(LinkedList l, void *data, bool (*cmpFn) (void *, void *)); // O(n)
+long int findIndex(LinkedList l, void *data, bool (*cmpFn) (void *, void *)); // O(n)
+
+void printList (LinkedList l, void (*printElem) (void *)); // O(n)
 
 #endif
