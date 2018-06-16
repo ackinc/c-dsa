@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "linked_list.h"
+#include "SinglyLinkedListWithTailPointer/linked_list.h"
 
 void printInt(void *intp) {
     printf("%d", *(int *)intp);
