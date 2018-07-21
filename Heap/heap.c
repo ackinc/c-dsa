@@ -42,6 +42,36 @@ Heap *createHeapWithCustomCmpFn(int (*cmpFn)(int, int)) {
     return hp;
 }
 
+Heap *heapify(int *elems, size_t n) {
+    Heap *hp = malloc(sizeof(Heap));
+    if (!hp) return NULL;
+
+    hp->length = n;
+    hp->capacity = n;
+    if (!(hp->elems = malloc(n * sizeof(int)))) return NULL;
+    hp->cmpFn = aSubB;
+
+    for (size_t i = 0; i < n; i++) hp->elems[i] = elems[i];
+    for (size_t i = n / 2 - 1; i < n; i--) bubbleDown(hp, i);
+
+    return hp;
+}
+
+Heap *heapifyWithCustomCmpFn(int *elems, size_t n, int (*cmpFn)(int, int)) {
+    Heap *hp = malloc(sizeof(Heap));
+    if (!hp) return NULL;
+
+    hp->length = n;
+    hp->capacity = n;
+    if (!(hp->elems = malloc(n * sizeof(int)))) return NULL;
+    hp->cmpFn = cmpFn;
+
+    for (size_t i = 0; i < n; i++) hp->elems[i] = elems[i];
+    for (size_t i = n / 2 - 1; i < n; i--) bubbleDown(hp, i);
+
+    return hp;
+}
+
 bool insert(Heap *hp, int x) {
     if (hp->length == hp->capacity && !resize(hp)) return false;
 

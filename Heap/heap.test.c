@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "heap.h"
 
@@ -25,4 +26,10 @@ void main () {
     removeMax(hp, &y);
     printf("Removed root: %d\n", y);
     print(hp);
+
+    int *elems = malloc(sizeof(int) * 10);
+    for (int i = 0; i < 10; i++) elems[i] = i + 50;
+    Heap *hp2 = heapifyWithCustomCmpFn(elems, 10, bSubA);
+    printf("Heapified a 10 element array\n");
+    print(hp2);
 }

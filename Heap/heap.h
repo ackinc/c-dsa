@@ -19,6 +19,8 @@ typedef struct Heap {
 
 Heap *createHeap();
 Heap *createHeapWithCustomCmpFn(int (*cmpFn)(int, int));
+Heap *heapify(int *elems, size_t n);
+Heap *heapifyWithCustomCmpFn(int *elems, size_t n, int (*cmpFn)(int, int));
 bool insert(Heap *hp, int x);
 bool getMax(Heap *hp, int *x);
 bool removeMax(Heap *hp, int *x);
