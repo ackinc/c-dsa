@@ -12,6 +12,7 @@ static size_t parentIdx(size_t i);
 static bool swap(int *elems, size_t n, size_t i, size_t j);
 static bool bubbleUp(Heap *hp, size_t i);
 static bool bubbleDown(Heap *hp, size_t i);
+static int aSubB(int a, int b) { return a - b; }
 
 Heap *createHeap() {
     Heap *hp = malloc(sizeof(Heap));
@@ -21,6 +22,22 @@ Heap *createHeap() {
     hp->capacity = MIN_CAPACITY;
     hp->elems = malloc(hp->capacity * sizeof(int));
     if (!hp->elems) return NULL;
+
+    hp->cmpFn = aSubB;
+
+    return hp;
+}
+
+Heap *createHeapWithCustomCmpFn(int (*cmpFn)(int, int)) {
+    Heap *hp = malloc(sizeof(Heap));
+    if (!hp) return NULL;
+
+    hp->length = 0;
+    hp->capacity = MIN_CAPACITY;
+    hp->elems = malloc(hp->capacity * sizeof(int));
+    if (!hp->elems) return NULL;
+
+    hp->cmpFn = cmpFn;
 
     return hp;
 }
@@ -92,7 +109,7 @@ static bool bubbleUp(Heap *hp, size_t i) {
     if (i < 0 || i >= hp->length) return false;
 
     size_t j = parentIdx(i);
-    while (i != 0 && hp->elems[i] > hp->elems[j]) {
+    while (i != 0 && hp->cmpFn(hp->elems[i], hp->elems[j]) < 0) {
         swap(hp->elems, hp->length, i, j);
         i = j;
         j = parentIdx(i);
@@ -109,9 +126,9 @@ static bool bubbleDown(Heap *hp, size_t i) {
 
         if (lc_idx >= hp->length) /* no children */ next_idx = 0;
         else if (rc_idx >= hp->length) /* one child */ next_idx = lc_idx;
-        else next_idx = hp->elems[lc_idx] >= hp->elems[rc_idx] ? lc_idx : rc_idx;
+        else next_idx = hp->cmpFn(hp->elems[lc_idx], hp->elems[rc_idx]) <= 0 ? lc_idx : rc_idx;
 
-        if (next_idx == 0 || hp->elems[i] >= hp->elems[next_idx]) {
+        if (next_idx == 0 || hp->cmpFn(hp->elems[i], hp->elems[next_idx]) <= 0) {
             break;
         } else {
             swap(hp->elems, hp->length, i, next_idx);
