@@ -23,8 +23,8 @@ void main () {
     removeMax(hp, &y);
     printf("Removed root: %d\n", y);
     print(hp);
-    removeMax(hp, &y);
-    printf("Removed root: %d\n", y);
+    removeAt(hp, 2, &y);
+    printf("Removed elem at idx 2: %d\n", y);
     print(hp);
 
     int *elems = malloc(sizeof(int) * 10);

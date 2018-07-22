@@ -88,14 +88,18 @@ bool getMax(Heap *hp, int *x) {
 }
 
 bool removeMax(Heap *hp, int *x) {
-    if (hp->length == 0) return false;
+    return removeAt(hp, 0, x);
+}
 
-    *x = hp->elems[0];
-    hp->elems[0] = hp->elems[--hp->length];
+bool removeAt(Heap *hp, size_t idx, int *x) {
+    if (idx < 0 || idx >= hp->length) return false;
+
+    *x = hp->elems[idx];
+    hp->elems[idx] = hp->elems[--hp->length];
 
     if (hp->capacity > MIN_CAPACITY && hp->capacity >= hp->length * 3) resize(hp);
 
-    return bubbleDown(hp, 0);
+    return bubbleDown(hp, idx);
 }
 
 void print(Heap *hp) {

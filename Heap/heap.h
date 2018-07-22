@@ -1,4 +1,4 @@
-// Binary MaxHeap implementation
+// Binary Heap implementation
 
 #ifndef __HEAP_H_
 #define __HEAP_H_
@@ -24,6 +24,7 @@ Heap *heapifyWithCustomCmpFn(int *elems, size_t n, int (*cmpFn)(int, int));
 bool insert(Heap *hp, int x);
 bool getMax(Heap *hp, int *x);
 bool removeMax(Heap *hp, int *x);
+bool removeAt(Heap *hp, size_t idx, int *x);
 
 void print(Heap *hp);
 

@@ -1,1 +1,2 @@
-Implementation of some common data structures and algorithms in C
+C implementation of some common data structures and algorithms
+Ref: opendatastructures.org
