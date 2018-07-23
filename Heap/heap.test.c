@@ -15,12 +15,12 @@ void main () {
 
     int x;
     insert(hp, 100);
-    getMax(hp, &x);
+    getRoot(hp, &x);
     printf("Inserted a maximal element. Root: %d\n", x);
     print(hp);
 
     int y;
-    removeMax(hp, &y);
+    removeRoot(hp, &y);
     printf("Removed root: %d\n", y);
     print(hp);
     removeAt(hp, 2, &y);

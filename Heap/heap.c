@@ -80,14 +80,14 @@ bool insert(Heap *hp, int x) {
     return bubbleUp(hp, hp->length - 1);
 }
 
-bool getMax(Heap *hp, int *x) {
+bool getRoot(Heap *hp, int *x) {
     if (hp->length == 0) return false;
 
     *x = hp->elems[0];
     return true;
 }
 
-bool removeMax(Heap *hp, int *x) {
+bool removeRoot(Heap *hp, int *x) {
     return removeAt(hp, 0, x);
 }
 
@@ -100,6 +100,10 @@ bool removeAt(Heap *hp, size_t idx, int *x) {
     if (hp->capacity > MIN_CAPACITY && hp->capacity >= hp->length * 3) resize(hp);
 
     return bubbleDown(hp, idx);
+}
+
+size_t size(Heap *hp) {
+    return hp->length;
 }
 
 void print(Heap *hp) {

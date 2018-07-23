@@ -22,9 +22,10 @@ Heap *createHeapWithCustomCmpFn(int (*cmpFn)(int, int));
 Heap *heapify(int *elems, size_t n);
 Heap *heapifyWithCustomCmpFn(int *elems, size_t n, int (*cmpFn)(int, int));
 bool insert(Heap *hp, int x);
-bool getMax(Heap *hp, int *x);
-bool removeMax(Heap *hp, int *x);
+bool getRoot(Heap *hp, int *x);
+bool removeRoot(Heap *hp, int *x);
 bool removeAt(Heap *hp, size_t idx, int *x);
+size_t size(Heap *hp);
 
 void print(Heap *hp);
 
